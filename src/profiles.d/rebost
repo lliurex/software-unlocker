@@ -1,0 +1,7 @@
+profile /usr/share/rebost/gui/rebostGui.py {
+  audit /usr/bin/rebost-gui ix,
+  }
+
+profile /usr/share/rebost/rebostCli.py {
+  audit /usr/bin/rebost ix,
+  }

@@ -1,0 +1,16 @@
+#!/bin/bash
+# Examples:
+# xgettext -o - -L Shell --keyword --keyword=GETTEXT lliurex-zero-installer-analytics.zmd
+# xgettext -o file.pot -L Shell --keyword --keyword=GETTEXT lliurex-zero-installer-analytics.zmd
+# LANG=es_ES.UTF-8 gettext -d lliurex-zero-installer-analytics -s "Enabled"
+# msginit -i file.pot -l es_ES.UTF-8
+# msgfmt -v es_ES.po -o es_ES.mo
+# cp es_ES.mo /usr/share/locale/es_ES/LC_MESSAGES/lliurex-zero-installer-analytics.mo
+#
+#
+# LANGUAGE SECTION
+#set -x
+
+zero-center add-pulsating-color software-unlocker 
+/usr/share/software-unlocker/software-unlocker.py
+exit 0

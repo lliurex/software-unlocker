@@ -1,0 +1,10 @@
+profile /usr/sbin/lliurex-upgrade {
+  audit /usr/sbin/lliurex-upgrade ix,
+}
+profile /usr/sbin/lliurex-up {
+  audit /usr/sbin/lliurex-up ix,
+}
+profile /usr/share/lliurex-up/lliurex-up.py {
+  audit /usr/sbin/lliurex-up ix,
+}
+

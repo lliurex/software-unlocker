@@ -1,0 +1,24 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Name=Software Unlocker
+Name[es]=Software Unlocker
+Name[ca_ES@valencia]=Software Unlocker
+Name[ca_ES]=Software Unlocker
+Name[ca]=Software Unlocker
+Name[ca_ES.UTF-8@valencia]=Software Unlocker
+Comment=Program to lock/unlock software management
+Comment[es]=Bloquea/Desbloquea la gestión de software
+Comment[ca_ES@valencia]=Bloca/Descloca la gestió de programari
+Comment[ca_ES]=Bloca/Descloca la gestió de programari
+Comment[ca]=Bloca/Descloca la gestió de programari
+Comment[ca_ES.UTF-8@valencia]=Bloca/Descloca la gestió de programari
+GenericName=Software Unlocker
+Type=Application
+Exec=software-unlocker
+TryExec=software-unlocker
+Icon=software-unlocker
+Terminal=false
+StartupNotify=true
+NoDisplay=true
+Categories=GNOME;GTK;Utility;
