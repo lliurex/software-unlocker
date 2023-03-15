@@ -1,0 +1,68 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-15 12:51+0100\n"
+"PO-Revision-Date: 2023-03-15 12:58+0100\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ca\n"
+
+#: ../src/software-unlocker.py:40
+msgid "Software management will be locked in {} minutes"
+msgstr "La gestió de software es bloquejarà en {} minut(s)"
+
+#: ../src/stacks/portrait.py:19
+msgid "Lock Screen"
+msgstr "Pantalla de bloqueig"
+
+#: ../src/stacks/portrait.py:20 ../src/stacks/portrait.py:21
+msgid "Set software lock state"
+msgstr "Estableix l'estat del bloqueig"
+
+#: ../src/stacks/portrait.py:23
+#, python-brace-format
+msgid ""
+"After apply the software management will be unlocked\n"
+"for {0} minutes and then will lock again as early as possible."
+msgstr ""
+"Després d'aplicar la gestió del programari es permetrà\n"
+"durant {0} minut(s) i es tornará a bloquejar automàticament."
+
+#: ../src/stacks/portrait.py:24
+msgid "After apply the software management will be locked"
+msgstr "Després d'aplicar la gestió de programari es bloquejarà."
+
+#: ../src/stacks/portrait.py:25
+msgid "Warning"
+msgstr "Atenció"
+
+#: ../src/stacks/portrait.py:26
+msgid "Lock software management"
+msgstr "Bloqueja la gestió de programari"
+
+#: ../src/stacks/portrait.py:27
+msgid "Load full software catalogue"
+msgstr "Carrega el catàleg complet de programari"
+
+#: ../src/stacks/portrait.py:28
+msgid "Software management is"
+msgstr "La gestió del programari està"
+
+#: ../src/stacks/portrait.py:29
+msgid "locked"
+msgstr "bloquejada"
+
+#: ../src/stacks/portrait.py:30
+msgid "unlocked"
+msgstr "desbloquejada"

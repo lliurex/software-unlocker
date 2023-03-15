@@ -1,0 +1,68 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-15 12:51+0100\n"
+"PO-Revision-Date: 2023-03-15 12:54+0100\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: es\n"
+
+#: ../src/software-unlocker.py:40
+msgid "Software management will be locked in {} minutes"
+msgstr "La gestión de software se bloqueará en {} minuto(s)"
+
+#: ../src/stacks/portrait.py:19
+msgid "Lock Screen"
+msgstr "Pantall de bloqueo"
+
+#: ../src/stacks/portrait.py:20 ../src/stacks/portrait.py:21
+msgid "Set software lock state"
+msgstr "Establece el bloqueo de software"
+
+#: ../src/stacks/portrait.py:23
+#, python-brace-format
+msgid ""
+"After apply the software management will be unlocked\n"
+"for {0} minutes and then will lock again as early as possible."
+msgstr ""
+"Tras aplicar la gestión del software se desbloqueará\\m\n"
+"durante {0} minuto(s) y se bloqueará automáticamente pasado el tiempo."
+
+#: ../src/stacks/portrait.py:24
+msgid "After apply the software management will be locked"
+msgstr "Tras aplicar la gestión de software se bloqueará."
+
+#: ../src/stacks/portrait.py:25
+msgid "Warning"
+msgstr "Atención"
+
+#: ../src/stacks/portrait.py:26
+msgid "Lock software management"
+msgstr "Bloquear gestión de software"
+
+#: ../src/stacks/portrait.py:27
+msgid "Load full software catalogue"
+msgstr "Cargar el catálogo de software completo"
+
+#: ../src/stacks/portrait.py:28
+msgid "Software management is"
+msgstr "La gestión de software está"
+
+#: ../src/stacks/portrait.py:29
+msgid "locked"
+msgstr "bloqueada"
+
+#: ../src/stacks/portrait.py:30
+msgid "unlocked"
+msgstr "desbloqueada"
