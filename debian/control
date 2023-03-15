@@ -1,0 +1,21 @@
+Source: software-unlocker
+Section: python
+Priority: optional
+Maintainer: Equipo LliureX <lliurex@gva.es> 
+Build-Depends: debhelper (>=9),
+               dh-python,
+               python3-setuptools,
+               python3-all,
+               python3-poinstaller,
+               llxsrchelper,
+			   dh-systemd,
+	       zero-dev
+Standards-Version: 4.1.2
+Homepage: http://lliurex.net
+Vcs-Browser: https://svn.lliurex.net/xenial/epi
+
+Package: software-unlocker
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python3:Depends}
+Description:Sofware unlocker gui
+
