@@ -103,20 +103,15 @@ class portrait(confStack):
 		self.box=QGridLayout()
 		self.setLayout(self.box)
 		self.chkEnableLock=QCheckBox(i18n.get("LBLLOCKER"))
-		self.chkEnableLock.setChecked(self.locker.getStatus())
 		self.box.addWidget(self.chkEnableLock)
 		self.chkEnableStore=QCheckBox(i18n.get("LBLSTORE"))
 		self.chkEnableStore.setChecked(self.locker.getStatus())
-		self.chkEnableStore.setChecked(not(self.rebost.getFiltersEnabled()))
-		self.chkEnableLock.stateChanged.connect(self.updateScreen)
 		self.box.addWidget(self.chkEnableStore)
 	#def _load_screen
 
 	def updateScreen(self):
-		#self.chkEnableLock.setChecked(self.locker.getStatus())
-		self.chkEnableStore.setEnabled(not(self.chkEnableLock.isChecked()))
-		if self.chkEnableLock.isChecked()==True:
-			self.chkEnableStore.setChecked(False)
+		self.chkEnableStore.setChecked(not(self.rebost.getFiltersEnabled()))
+		self.chkEnableLock.setChecked(self.locker.getStatus())
 	#def _update_screen
 
 	def closeEvent(self):
