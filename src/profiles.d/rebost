@@ -2,6 +2,10 @@ profile /usr/share/rebost/gui/rebostGui.py {
   audit /usr/bin/rebost-gui ix,
   }
 
+profile /usr/share/rebost/rebost-dbus.py {
+  audit /usr/share/rebost/rebost-dbus.py ux,
+  }
+
 profile /usr/share/rebost/rebostCli.py {
   audit /usr/bin/rebost ix,
   }
