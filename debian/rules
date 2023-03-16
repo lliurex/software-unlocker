@@ -17,3 +17,5 @@ export PYBUILD_NAME=software-unlocker
 %:
 	dh $@ --with llxsrc,zero,systemd
 
+override_dh_systemd_start:
+	dh_systemd_start --no-start
