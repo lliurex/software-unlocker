@@ -2,4 +2,3 @@ zmd/*zmd /usr/share/zero-center/zmds
 zmd/*app /usr/share/zero-center/applications
 src/* /usr/share/software-unlocker
 rsrc/* /usr/share/software-unlocker/rsrc
-service/* /lib/systemd/system/

@@ -1,0 +1,16 @@
+[Unit]
+Description=Set software policies
+After=apparmor.service
+
+[Service]
+Type=simple
+ExecStart=/usr/share/software-unlocker/software-unlocker.py lock
+Restart=always
+RestartSec=2
+RestartPreventExitStatus=0
+StartLimitInterval=200
+StartLimitBurst=9
+
+[Install]
+WantedBy=multi-user.target
+Alias=software-policies.service
