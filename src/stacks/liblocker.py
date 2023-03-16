@@ -8,10 +8,16 @@ import multiprocessing
 class softlocker():
 	def __init__(self):
 		self.status=False
+		self.dbg=False
 		self.enforced=[]
 		self.watchdogLaunchDelay=10
 		self.aaFile="/etc/apparmor.d/security.profile"
 	#def _init__
+
+	def _debug(self,msg):
+		if self.dbg==True:
+			print("{}".format(msg))
+	#def _debug
 
 	def setTimeout(self,timeout):
 		self.watchdogLaunchDelay=timeout
@@ -37,12 +43,12 @@ class softlocker():
 		if os.path.isdir(profileDir)==True:
 			for profile in os.listdir(profileDir):
 				fcontents=[]
-				print("Reading {}".format(profile))
+				self._debug("Reading {}".format(profile))
 				try:
 					with open (os.path.join(profileDir,profile)) as f:
 						fcontents=f.readlines()
 				except Exception as e:
-					print("{0}: {1}".format(profile,e))
+					self._debug("{0}: {1}".format(profile,e))
 					continue
 				if len(fcontents)>0:
 					profiles.extend(fcontents)
