@@ -1,5 +1,5 @@
 profile /usr/share/rebost/gui/rebostGui.py {
-  audit /usr/bin/rebost-gui ix,
+  audit /usr/bin/rebost-gui ux,
   }
 
 profile /usr/share/rebost/rebost-dbus.py {
