@@ -76,7 +76,7 @@ class softlocker():
 	#def _generateAAProfile
 
 	def _getSystemApps(self):
-		apps={"apt":[],"dpkg":[],"snap":[],"pkcon":[],"flatpak":[]}
+		apps={"apt":[],"dpkg":[],"pkcon":[],"flatpak":[]}
 		envDirs=os.environ.get("PATH","/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/sbin:/usr/sbin").split(":")
 		for envDir in envDirs:
 			if os.path.isdir(envDir)==False:
