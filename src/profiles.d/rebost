@@ -1,11 +1,46 @@
 profile /usr/share/rebost/gui/rebostGui.py {
-  audit /usr/bin/rebost-gui ux,
+  include <abstractions/base>
+  /usr/bin/env cx,
+  /usr/{,local/}lib/python3*/dist-packages/** mr,
+  /usr/share/rebost/gui/rebostGui.py cxrm,
+  /run/dbus/system_bus_socket rw,
+  /usr/bin/python3* cuxrmw,
   }
 
 profile /usr/share/rebost/rebost-dbus.py {
-  audit /usr/share/rebost/rebost-dbus.py ux,
+  include <abstractions/base>
+  /usr/{,local/}lib/python3**/dist-packages/** mr,
+  /usr/share/rebost/{,**/}* mr,
+  /usr/share/rebost/rebost-dbus.py cixr,
+  /run/nscd/socket wr,
+  /run/dbus/system_bus_socket wr,
+  /etc/apt/apt.conf.d/* mr,
+  /usr/share/dpkg/* mr,
+  /etc/ssl/openssl.cnf mr,
+  /sys/kernel/mm/transparent_hugepage/hpage_pmd_size mr, 
+  /sys/kernel/mm/transparent_hugepage/hpage_pmd_size mr, 
+  /proc/cgroups mr,
+  /proc/cmdline mr,
+  /proc/sys/kernel/seccomp/actions_avail r,
+  /sys/kernel/security/apparmor/features/ mr,
+  /proc/*/mountinfo mr,
+  /usr/bin/systemctl ix,
+  /etc/nsswitch.conf mr,
+  /proc/cgroups mr,
+  /proc/cmdline mr,
+  /proc/sys/kernel/seccomp/actions_avail r,
+  /sys/kernel/security/apparmor/features/ mr,
+  /proc/*/mountinfo mr,
+  /usr/bin/systemctl ix,
+  /etc/nsswitch.conf mr,
+  /usr/bin/python3* cuxrmw,
   }
 
 profile /usr/share/rebost/rebostCli.py {
-  audit /usr/bin/rebost ix,
+  include <abstractions/base>
+  /usr/bin/env cx,
+  /usr/{,local/}lib/python3*/dist-packages/** mr,
+  /usr/share/rebost/rebostCli.py cxrm,
+  /run/dbus/system_bus_socket rw,
+  /usr/bin/python3* cuxrmw,
   }
