@@ -1,0 +1,4 @@
+profile unsecuredpkg {
+  /usr/sbin/dpkg-preconfigure cixmr,
+
+}

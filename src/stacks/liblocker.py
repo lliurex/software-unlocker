@@ -57,18 +57,18 @@ class softlocker():
 	#def _getManagedProfiles
 
 	def _generateAAProfile(self):
-		systemApps=self._getSystemApps()
+		#systemApps=self._getSystemApps()
 		fcontent=["#include <tunables/global>\n"]
-		seen=[]
-		for key,kapp in systemApps.items():
-			for app in kapp:
-				if app in seen:
-					continue
-				seen.append(app)
-				cmd="profile %s {\n"%(app)
-				cmd+="  audit deny %s mr,\n"%(app)
-				cmd+="}\n"
-				fcontent.append(cmd)
+		#seen=[]
+		#for key,kapp in systemApps.items():
+		#	for app in kapp:
+		#		if app in seen:
+		#			continue
+		#		seen.append(app)
+		#		cmd="profile %s {\n"%(app)
+		#		cmd+="  audit deny %s mr,\n"%(app)
+		#		cmd+="}\n"
+		#		fcontent.append(cmd)
 		includedProfiles=self._getManagedProfiles()
 		fcontent.extend(includedProfiles)
 		with open (self.aaFile,"w") as f:
@@ -77,39 +77,32 @@ class softlocker():
 
 	def _getSystemApps(self):
 		apps={"apt":[],"dpkg":[],"pkcon":[],"flatpak":[]}
-		envDirs=os.environ.get("PATH","/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/sbin:/usr/sbin").split(":")
-		for envDir in envDirs:
-			if os.path.isdir(envDir)==False:
-				continue
-			pathApps=os.listdir(envDir)
-			for app in apps.keys():
-				for pathApp in pathApps:
-					if "/{}".format(app) in "/{}".format(pathApp):
-						if "dpkg-unlocker" in pathApp:
-							continue
-						apps[app].append(os.path.join(envDir,pathApp))
+		#envDirs=os.environ.get("PATH","/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/sbin:/usr/sbin").split(":")
+		#for envDir in envDirs:
+		#	if os.path.isdir(envDir)==False:
+		#		continue
+		#	pathApps=os.listdir(envDir)
+		#	for app in apps.keys():
+		#		for pathApp in pathApps:
+		#			if "/{}".format(app) in "/{}".format(pathApp):
+		#				if "dpkg-unlocker" in pathApp:
+		#					continue
+		#				apps[app].append(os.path.join(envDir,pathApp))
 		return(apps)
 	#def _getSystemApps
 
 	def _getApps(self,appsFilter=[]):
 		apps=[]
 		self._generateAAProfile()
-		with open(self.aaFile,"r") as f:
-			fcontents=f.readlines()
-			for fline in fcontents:
-				if fline.strip().startswith("profile"):
-					profile=fline.split()[1]
-					app=os.path.basename(profile)
-					if len(appsFilter)>0:
-						for appFilter in appsFilter:
-							if appFilter in app:
-								apps.append(profile.replace("*",""))
-					else:
-						apps.append(profile.replace("*",""))
+		profileDir="/usr/share/software-unlocker/profiles.d"
+		if os.path.isdir(profileDir)==True:
+			apps=os.listdir(profileDir)
+		print(apps)
 		return(apps)
 	#def _getApps
 
 	def setStatus(self,enforce=True,apps=[]):
+		apps=[]
 		if enforce==self.getStatus():
 			return()
 
