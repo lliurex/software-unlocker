@@ -1,4 +1,4 @@
-/usr/bin/snap {
+profile unsecuresnap {
   include <abstractions/base>
   network,
   dbus,
@@ -11,11 +11,9 @@
   /proc/cgroups mr,
   /proc/cmdline mr,
   /proc/sys/kernel/osrelease r,
-  /proc/sys/kernel/random/uuid mr,
   /proc/sys/kernel/seccomp/actions_avail r,
   /run/nscd/socket rw,
   /run/snapd.socket rw,
-  /run/user/{,**/}* rw,
   /snap/snapd/*/usr/bin/snap ix,
   /snap/snapd/*/usr/lib/snapd/snap-confine px,
   /snap/{,**/}* r,

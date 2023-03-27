@@ -1,0 +1,4 @@
+/usr/bin/dpkg {
+  include <abstractions/base>
+  /usr/bin/dpkg rm,
+}
