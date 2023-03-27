@@ -3,7 +3,6 @@ Section: python
 Priority: optional
 Maintainer: Equipo LliureX <lliurex@gva.es> 
 Build-Depends: debhelper (>=9),
-               dh-python,
                python3-setuptools,
                python3-all,
                python3-poinstaller,
