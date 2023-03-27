@@ -1,0 +1,4 @@
+/usr/bin/apt-cache {
+  include <abstractions/base>
+  /usr/bin/apt-cache rm,
+}
