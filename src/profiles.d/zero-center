@@ -1,3 +1,0 @@
-profile /usr/share/zero-center/zero-center.py {
-  audit /usr/bin/zero-center ux,
-  }
