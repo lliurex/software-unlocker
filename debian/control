@@ -15,6 +15,6 @@ Vcs-Browser: https://svn.lliurex.net/xenial/epi
 
 Package: software-unlocker
 Architecture: all
-Depends: ${shlibs:Depends}, ${misc:Depends}, ${python3:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python3:Depends}, apparmor-utils,python3-appconfig
 Description:Sofware unlocker gui
 
