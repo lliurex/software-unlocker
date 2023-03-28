@@ -16,6 +16,7 @@
   /etc/apport/blacklist.d/{,*} mr,
   /etc/apt/apt.conf.d/{,**/}* mr,
   /etc/apt/apt.conf.d/ mr,
+  /etc/apt/sources.list.d/{,**/}* mrwcixkl,
   /etc/bash.bashrc r,
   /etc/epi.token cxrw,
   /etc/fonts/{,**/}* r,
@@ -85,3 +86,4 @@
   @{HOME}/.local/share/{,**/}* r,
   @{HOME}/.config/{,**/}* r,
 }
+

@@ -1,4 +1,4 @@
-profile unsecureflatpak {
+profile unsecureflatpak flags=(attach_disconnected) {
   include <abstractions/base>
   capability setgid,
   capability chown,

@@ -57,73 +57,49 @@ class softlocker():
 	#def _getManagedProfiles
 
 	def _generateAAProfile(self):
-		#systemApps=self._getSystemApps()
 		fcontent=["#include <tunables/global>\n"]
-		#seen=[]
-		#for key,kapp in systemApps.items():
-		#	for app in kapp:
-		#		if app in seen:
-		#			continue
-		#		seen.append(app)
-		#		cmd="profile %s {\n"%(app)
-		#		cmd+="  audit deny %s mr,\n"%(app)
-		#		cmd+="}\n"
-		#		fcontent.append(cmd)
 		includedProfiles=self._getManagedProfiles()
 		fcontent.extend(includedProfiles)
 		with open (self.aaFile,"w") as f:
 			f.writelines(fcontent)
 	#def _generateAAProfile
 
-	def _getSystemApps(self):
-		apps={"apt":[],"dpkg":[],"pkcon":[],"flatpak":[]}
-		#envDirs=os.environ.get("PATH","/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/sbin:/usr/sbin").split(":")
-		#for envDir in envDirs:
-		#	if os.path.isdir(envDir)==False:
-		#		continue
-		#	pathApps=os.listdir(envDir)
-		#	for app in apps.keys():
-		#		for pathApp in pathApps:
-		#			if "/{}".format(app) in "/{}".format(pathApp):
-		#				if "dpkg-unlocker" in pathApp:
-		#					continue
-		#				apps[app].append(os.path.join(envDir,pathApp))
-		return(apps)
-	#def _getSystemApps
-
-	def _getApps(self,appsFilter=[]):
-		apps=[]
-		self._generateAAProfile()
-		profileDir="/usr/share/software-unlocker/profiles.d"
-		if os.path.isdir(profileDir)==True:
-			apps=os.listdir(profileDir)
-		print(apps)
-		return(apps)
-	#def _getApps
-
 	def setStatus(self,enforce=True,apps=[]):
 		apps=[]
 		if enforce==self.getStatus():
 			return()
-
-		if len(apps)==0:
-			apps=self._getApps()
-		for app in apps:
-			if enforce==True:
-				cmd=["/usr/sbin/aa-enforce",app]
-				if "lliurex" in app or "zero-center" in app or "rebost" in app:
-					cmd=["/usr/sbin/aa-complain",app]
-			else:
-				cmd=["/usr/sbin/aa-complain",app]
-				if app not in self.enforced:
-					self.enforced.append(app)
-			proc=subprocess.run(cmd,capture_output=True,universal_newlines=True)
+		if enforce==True:
+			cmd=["/usr/sbin/aa-enforce","security.profile"]
+		else:
+			cmd=["/usr/sbin/aa-disable","security.profile"]
+		proc=subprocess.run(cmd,capture_output=True,universal_newlines=True)
+		self.setPolkitStatus(status=enforce)
 		if enforce==False:
 			self.setLock()
 	#def setStatus
 
+	def setPolkitStatus(self,status=True):
+		configDir="/usr/share/software-unlocker/polkit/"
+		polkitDir="/etc/polkit/localauthority"
+		for d in os.listdir(configDir):
+			if os.path.isdir(os.path.join(polkitdir,d))==False:
+				os.makedirs(os.path.join(polkitdir,d))
+			for fconf in os.listdir(os.path.join(configDir,d)):
+				if status:
+					wrkf=os.path.join(configDir,d,fconf)
+					with open(wrkf,'r') as f:
+						fcontent=f.read()
+					dstf=os.path.join(polkitDir,d,fconf)
+					with open(dstf,'w') as f:
+						f.write(fcontent)
+				else:
+					dstf=os.path.join(polkitDir,d,fconf)
+					if os.path.isfile(dstf):
+						os.unlink(dstf)
+	#def setPolkitStatus
+
+
 	def unlockApt(self,enforce=True):
-		apps=self._getApps(appsFilter=["apt","dpkg"])
 		self.setStatus(enforce=enforce,apps=apps)
 	#def unlockApt
 
