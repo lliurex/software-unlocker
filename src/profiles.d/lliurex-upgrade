@@ -1,3 +1,0 @@
-profile /usr/sbin/lliurex-upgrade flags=(complain) {
-  audit /usr/sbin/lliurex-upgrade ix,
-}
