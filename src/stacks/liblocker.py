@@ -82,8 +82,8 @@ class softlocker():
 		configDir="/usr/share/software-unlocker/polkit/"
 		polkitDir="/etc/polkit/localauthority"
 		for d in os.listdir(configDir):
-			if os.path.isdir(os.path.join(polkitdir,d))==False:
-				os.makedirs(os.path.join(polkitdir,d))
+			if os.path.isdir(os.path.join(polkitDir,d))==False:
+				os.makedirs(os.path.join(polkitDir,d))
 			for fconf in os.listdir(os.path.join(configDir,d)):
 				if status:
 					wrkf=os.path.join(configDir,d,fconf)
