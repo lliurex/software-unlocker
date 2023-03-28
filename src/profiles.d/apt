@@ -1,0 +1,4 @@
+/usr/bin/apt {
+  include <abstractions/base>
+  /usr/bin/apt rm,
+}

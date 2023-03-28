@@ -1,0 +1,45 @@
+profile unsecuresnap {
+  include <abstractions/base>
+  network,
+  dbus,
+  /dev/pts/* rw,
+  /etc/nsswitch.conf mr,
+  /etc/passwd r,
+  /etc/fstab r,
+  /proc/1/sched r,
+  /proc/@{pid}/{,**/}* mr,
+  /proc/cgroups mr,
+  /proc/cmdline mr,
+  /proc/sys/kernel/osrelease r,
+  /proc/sys/kernel/seccomp/actions_avail r,
+  /run/nscd/socket rw,
+  /run/snapd.socket rw,
+  /snap/snapd/*/usr/bin/snap ix,
+  /snap/snapd/*/usr/lib/snapd/snap-confine px,
+  /snap/{,**/}* r,
+  /snap/snapd/*/usr/lib/snapd/snap-seccomp rmix,
+  /snap/snapd/*/usr/lib/snapd/info mr,
+  /snap/snapd/*/usr/lib/snapd/snapd mr,
+  /sys/module/apparmor/parameters/enabled r,
+  /sys/kernel/mm/transparent_hugepage/hpage_pmd_size mr, 
+  /sys/kernel/security/apparmor/features/ mr,
+  /usr/bin/systemctl ix,
+  /usr/bin/snap cxrm,
+  /var/cache/snapd/{,**/}* r,
+  /var/lib/snapd/{,**/}* r,
+  /var/lib/snapd/inhibit/* rk,
+  @{HOME}/.Xauthority r,
+  @{HOME}/snap.Xauthority r,
+   / r,
+   @{HOMEDIRS}/ r,
+   # These should both have 'owner' match but due to LP: #1466234, we can't
+   # yet
+   @{HOME}/ r,
+   @{HOME}/snap/{,**/}* rw,
+
+   # experimental
+   @{HOME}/.snap/                rw,
+   @{HOME}/.snap/data/{,*/,*/*/} rw,
+   @{HOME}/Snap/{,*/,*/*/}       rw,
+}
+

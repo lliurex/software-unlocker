@@ -1,0 +1,3 @@
+profile /usr/sbin/lliurex-upgrade {
+  audit /usr/sbin/lliurex-upgrade ix,
+}
