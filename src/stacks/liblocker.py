@@ -73,9 +73,31 @@ class softlocker():
 		else:
 			cmd=["/usr/sbin/aa-disable","security.profile"]
 		proc=subprocess.run(cmd,capture_output=True,universal_newlines=True)
+		self.setPolkitStatus(status=enforce)
 		if enforce==False:
 			self.setLock()
 	#def setStatus
+
+	def setPolkitStatus(self,status=True):
+		configDir="/usr/share/software-unlocker/polkit/"
+		polkitDir="/etc/polkit/localauthority"
+		for d in os.listdir(configDir):
+			if os.path.isdir(os.path.join(polkitdir,d))==False:
+				os.makedirs(os.path.join(polkitdir,d))
+			for fconf in os.listdir(os.path.join(configDir,d)):
+				if status:
+					wrkf=os.path.join(configDir,d,fconf)
+					with open(wrkf,'r') as f:
+						fcontent=f.read()
+					dstf=os.path.join(polkitDir,d,fconf)
+					with open(dstf,'w') as f:
+						f.write(fcontent)
+				else:
+					dstf=os.path.join(polkitDir,d,fconf)
+					if os.path.isfile(dstf):
+						os.unlink(dstf)
+	#def setPolkitStatus
+
 
 	def unlockApt(self,enforce=True):
 		self.setStatus(enforce=enforce,apps=apps)
