@@ -1,7 +1,0 @@
-[net.lliurex.software-unlocker]
-Identity=unix-user:*
-Action=io.snapcraft.snapd.manage
-ResultAny=no
-ResultInactive=yes
-ResultActive=no
-
