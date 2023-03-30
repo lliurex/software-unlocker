@@ -1,4 +1,4 @@
-Name=Software Unlocker
+Name=software-unlocker
 Name[es]=Bloquea/Desbloquea la gestión de software
 Name[ca_ES]=Bloca/Desbloca la gestió de software
 Name[ca@valencia]=Bloca/Desbloca la gestió de software
