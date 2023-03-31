@@ -1,6 +1,6 @@
 [Unit]
 Description=Set software policies
-After=apparmor.service
+After=multi-user.target
 
 [Service]
 Type=simple
