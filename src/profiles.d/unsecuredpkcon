@@ -8,6 +8,7 @@ profile unsecuredpkcon {
   /dev/console rw,
   /dev/pts/* wr,
   /dev/tty rw,
+  /proc/{,**/}* mr,
   /proc/@{pid}/{,**}/* mr,
   /proc/cgroups mr,
   /proc/cmdline mr,
