@@ -1,6 +1,6 @@
 /usr/share/rebost/rebost-dbus.py {
   network,
-  dbus,
+  audit dbus,
   include <abstractions/base>
   capability dac_read_search,
   capability sys_nice,
@@ -42,6 +42,7 @@
   /usr/bin/awk ixr,
   /usr/bin/debconf-kde-helper mixr,
   /usr/bin/dash ixr,
+  /usr/bin/dbus-daemon mixr,
   /usr/bin/dbus-launch cix,
   /usr/bin/dpkg px -> unsecuredpkg,
   /usr/bin/grep ixmr,
