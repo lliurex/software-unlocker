@@ -88,8 +88,15 @@ else:
 	locker.setTimeout(timeout)
 	locker.setStatus(enforce=enforce)
 	rebost=store.client()
-	if rebost.getFiltersEnabled()==catalogue:
+	filterState=False
+	if rebost.getFiltersEnabled()==1:
+		filterState=True
+	print(filterState)
+	if filterState==catalogue:
 		cmd=["service","rebost","restart"]
 		subprocess.run(cmd)
+		lastUpdate="/usr/share/rebost/tmp/sq.lu"
+		if os.path.isfile(lastUpdate)==True:
+			os.unlink(lastUpdate)
 		rebost.disableFilters()
 	print(_("Software management will be locked in {} minutes".format(int(timeout/60))))
