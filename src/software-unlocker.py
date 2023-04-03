@@ -91,7 +91,6 @@ else:
 	filterState=False
 	if rebost.getFiltersEnabled()==1:
 		filterState=True
-	print(filterState)
 	if filterState==catalogue:
 		cmd=["service","rebost","restart"]
 		subprocess.run(cmd)
