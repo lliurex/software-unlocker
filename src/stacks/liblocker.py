@@ -10,6 +10,7 @@ class softlocker():
 		self.status=False
 		self.dbg=False
 		self.enforced=[]
+		multiprocessing.set_start_method('fork')
 		self.watchdogLaunchDelay=10
 		self.aaFile="/etc/apparmor.d/security.profile"
 	#def _init__
@@ -104,7 +105,6 @@ class softlocker():
 	#def unlockApt
 
 	def setLock(self):
-		multiprocessing.set_start_method('fork')
 		mproc=multiprocessing.Process(target=self._watchdog)
 		mproc.start()
 		return
