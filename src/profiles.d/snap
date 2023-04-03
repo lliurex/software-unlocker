@@ -28,7 +28,7 @@
   /sys/kernel/security/apparmor/features/ mr,
   /usr/bin/systemctl ix,
  # /usr/bin/snap cxrm,
- # /var/cache/snapd/{,**/}* r,
+  /var/cache/snapd/{,**/}* rwmcixlk,
   /var/lib/snapd/{,**/}* r,
   /var/lib/snapd/inhibit/* rk,
   @{HOME}/.Xauthority r,
