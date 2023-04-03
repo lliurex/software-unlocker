@@ -74,7 +74,7 @@
   /usr/local/lib/python*/dist-packages/{,**/}* r,
   /usr/share/*/{,**/}*_script ixrmw,
   /usr/share/*/{,**/}*.epi rmw,
-  /usr/share/zero-center/zero-center.py ixrm,
+  /usr/share/zero-center/zero-center.py px,
   /usr/sbin/{,**/}* r,
   /usr/sbin/epi-gtk mcixr,
   /usr/{,local/}share/{,**/}* r,
