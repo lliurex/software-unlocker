@@ -50,7 +50,6 @@ class unlockSoftware(QThread):
 		self.locker.setStatus(enforce=self.lockstate)
 		currentState=self.rebost.getFiltersEnabled()
 		if isinstance(currentState,int):
-			print(bool(currentState))
 			if currentState==1:
 				currentState=True
 			else:
@@ -93,12 +92,15 @@ class portrait(confStack):
 		self.locker=liblocker.softlocker()
 		self.rebost=store.client()
 		self.timeout=600 #In seconds
-		self.locker.setTimeout(self.timeout)
+		self.force=True
 		self.lock=unlockSoftware()
 		self.running=False
 	#def __init__
 
 	def _load_screen(self):
+		conf=self.getConfig().get("system")
+		self.timeout=int(conf.get("timeout",self.timeout))
+		self.locker.setTimeout(self.timeout)
 		self.config=self.getConfig()
 		self.box=QGridLayout()
 		self.setLayout(self.box)
@@ -143,7 +145,6 @@ class portrait(confStack):
 	#def _showMsg
 
 	def _finish(self):
-		print("Ending...")
 		self.setEnabled(True)
 		msg=i18n.get("UNLOCKED")
 		if self.chkEnableLock.isChecked()==True:
