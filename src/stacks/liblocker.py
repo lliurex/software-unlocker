@@ -69,6 +69,8 @@ class softlocker():
 		apps=[]
 		if enforce==self.getStatus():
 			return()
+		if os.path.isfile(self.aaFile)==False:
+			self._generateAAProfile()
 		if enforce==True:
 			cmd=["/usr/sbin/aa-enforce","security.profile"]
 		else:
