@@ -40,16 +40,13 @@ def processParms(args):
 	enforce=True
 	fullcatalogue=False
 	timeout=TIMEOUT
-	showH=True
-	for i in args:
+	showH=False
+	for i in args[1:]:
 		if i=="unlock":
-			showH=False
 			enforce=False
 		elif i=="full":
-			showH=False
 			fullcatalogue=True
 		elif i=="default":
-			showH=False
 			fconf="/usr/share/software-unlocker/lock.json"
 			jconf={}
 			if os.path.isfile(fconf):
@@ -65,8 +62,9 @@ def processParms(args):
 			if jconf.get("timeout","0")!="0":
 				if jconf.get("timeout").isdigit()==True:
 					timeout=int(jconf.get("timeout",TIMEOUT))
-		elif i in ["lock","filtered"]:
-			showH=False
+		elif i not in ["unlock","full","lock","filtered"]:
+			print("Unknown parm {}".format(i))
+			showH=True
 	if showH==True:
 		showHelp()
 	return(enforce,fullcatalogue,timeout)
