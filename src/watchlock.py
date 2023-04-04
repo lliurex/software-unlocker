@@ -3,13 +3,18 @@ import os,time,sys
 import psutil
 import subprocess
 
-watchdogLaunchDelay=1
+if len(sys.argv)<=1:
+	watchdogLaunchDelay=60
+elif isinstance(sys.argv[1],int)==False:
+	watchdogLaunchDelay=60
+else:
+	watchdogLaunchDelay=int(sys.argv[1])
 found=True
 name=""
-time.sleep(watchdogLaunchDelay)
 managedTools=os.listdir("/usr/share/software-unlocker/profiles.d")
-excluded=["rebost-dbus.py"]
+excluded=["rebost-dbus.py","unsecuresnap","unsecureflatpak","unsecuredpkg","unsecuredpkcon","zero-center.py"]
 while found==True:
+	time.sleep(watchdogLaunchDelay)
 	found=False
 	for proc in psutil.process_iter(["pid","name"]):
 		for app in managedTools:
@@ -19,7 +24,6 @@ while found==True:
 			if os.path.basename(proc.info.get("name","")) in name:
 				if name=="flatpak":
 					if "install" or "uninstall" in proc.cmdline():
-                        :x
 						break
 				elif name=="snap":
 					if "install" or "remove" in proc.cmdline():
@@ -30,7 +34,8 @@ while found==True:
 					break
 		if found==True:
 			break
-	time.sleep(1)
-print("Locking...")
 cmd=["/usr/share/software-unlocker/software-unlocker.py","default"]
-subprocess.run(cmd)
+try:
+	subprocess.run(cmd)
+except Exception as e:
+	print(e)
