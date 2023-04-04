@@ -18,10 +18,8 @@ while found==True:
 				continue
 			if os.path.basename(proc.info.get("name","")) in name:
 				if name=="flatpak":
-					print(proc.cmdline())
 					if "install" or "uninstall" in proc.cmdline():
-						print("HEY")
-						found=True
+                        :x
 						break
 				elif name=="snap":
 					if "install" or "remove" in proc.cmdline():
