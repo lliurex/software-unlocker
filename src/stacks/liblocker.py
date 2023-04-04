@@ -11,7 +11,7 @@ class softlocker():
 		self.dbg=False
 		self.enforced=[]
 		multiprocessing.set_start_method('fork')
-		self.watchdogLaunchDelay=10
+		self.watchdogLaunchDelay=60
 		self.aaFile="/etc/apparmor.d/security.profile"
 	#def _init__
 
@@ -114,26 +114,5 @@ class softlocker():
 	#def unlockApt
 
 	def setLock(self):
-		mproc=multiprocessing.Process(target=self._watchdog)
-		mproc.start()
-		return
+		subprocess.Popen(['/usr/share/software-unlocker/watchlock.py',"{}".format(self.watchdogLaunchDelay)],close_fds=True,start_new_session=True)
 	#def setLock
-
-	def _watchdog(self):
-		return()
-		print("Waiting for apt...")
-		found=False
-		name=""
-		time.sleep(self.watchdogLaunchDelay)
-		while found==False:
-			found=True
-			for proc in psutil.process_iter(["pid","name"]):
-				for app in self.enforced:
-					name=os.path.basename(app)
-					if os.path.basename(proc.info.get("name","")) in name:
-						found=False
-						break
-			if found==False:
-				time.sleep(10)
-		self.setStatus(enforce=True,apps=self.enforced)
-		self.enforced=[]
