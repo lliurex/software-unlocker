@@ -13,14 +13,16 @@ import time
 from stacks import liblocker
 from rebost import store
 _ = gettext.gettext
-TIMEOUT=6
+TIMEOUT=60
 i18n={"USAGE":_("Usage"),
 	"LOCK":_("Locks software management"),
 	"UNLOCK":_("Unlocks software management"),
 	"FULL":_("Loads all apps (unfiltered)"),
 	"FILTERED":_("Only load apps from catalogue"),
 	"DEFAULT":_("Load values from configuration file"),
-	"LAUNCHGUI":_("Without arguments launches the gui")
+	"LAUNCHGUI":_("Without arguments launches the gui"),
+	"MSG_LOCK":_("Software management will be locked in"),
+	"MINUTES":_("minutes")
 }
 
 def showHelp():
@@ -60,8 +62,8 @@ def processParms(args):
 			if jconf.get("catalogue","false")=="true":
 				fullcatalogue=True
 			if jconf.get("timeout","0")!="0":
-				if jconf.get("timeout","0").isdigit()==True:
-					timeout=int(jconf.get("timeout","0"))
+				if jconf.get("timeout").isdigit()==True:
+					timeout=int(jconf.get("timeout",TIMEOUT))
 		elif i in ["lock","filtered"]:
 			showH=False
 	if showH==True:
@@ -75,10 +77,9 @@ if len(sys.argv)==1:
 	config.setWindowTitle("Software Unlocker")
 	config.setRsrcPath("/usr/share/software-unlocker/rsrc")
 	config.setIcon('software-unlocker')
-	#config.setWiki('https://wiki.edu.gva.es/lliurex/tiki-index.php?page=Accesibilidad%20en%20Lliurex:%20Access%20Helper')
+	#config.setWiki('https://wiki.edu.gva.es/lliurex/tiki-index.php?page=software-unlocker')
 	config.setBanner('unlocker_banner.png')
 	config.hideNavMenu(False)
-	#config.setBackgroundImage('repoman_login.svg')
 	config.setConfig(confDirs={'system':'/usr/share/software-unlocker','user':os.path.join(os.environ['HOME'],".config/software-unlocker")},confFile="lock.json")
 	config.Show()
 	app.exec_()
@@ -98,4 +99,4 @@ else:
 		if os.path.isfile(lastUpdate)==True:
 			os.unlink(lastUpdate)
 		rebost.disableFilters()
-	print(_("Software management will be locked in {} minutes".format(int(timeout/60))))
+	print("{} {} {}".format(i18n["MSG_LOCK"],i18n["MINUTES"],int(timeout/60)))

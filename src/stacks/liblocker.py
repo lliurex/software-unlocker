@@ -11,7 +11,7 @@ class softlocker():
 		self.dbg=False
 		self.enforced=[]
 		multiprocessing.set_start_method('fork')
-		self.watchdogLaunchDelay=10
+		self.watchdogLaunchDelay=60
 		self.aaFile="/etc/apparmor.d/security.profile"
 	#def _init__
 
@@ -83,7 +83,8 @@ class softlocker():
 
 	def setPolkitStatus(self,status=True):
 		configDir="/usr/share/software-unlocker/polkit/"
-		polkitDir="/etc/polkit/localauthority"
+		polkitDir="/etc/polkit-1/localauthority"
+		actionsDir="/usr/share/polkit-1"
 		for d in os.listdir(configDir):
 			if os.path.isdir(os.path.join(polkitDir,d))==False:
 				os.makedirs(os.path.join(polkitDir,d))
@@ -92,11 +93,17 @@ class softlocker():
 					wrkf=os.path.join(configDir,d,fconf)
 					with open(wrkf,'r') as f:
 						fcontent=f.read()
-					dstf=os.path.join(polkitDir,d,fconf)
+					if d=="actions":
+						dstf=os.path.join(actionsDir,d,fconf)
+					else:
+						dstf=os.path.join(polkitDir,d,fconf)
 					with open(dstf,'w') as f:
 						f.write(fcontent)
 				else:
-					dstf=os.path.join(polkitDir,d,fconf)
+					if d=="actions":
+						dstf=os.path.join(actionsDir,d,fconf)
+					else:
+						dstf=os.path.join(polkitDir,d,fconf)
 					if os.path.isfile(dstf):
 						os.unlink(dstf)
 	#def setPolkitStatus
@@ -107,26 +114,5 @@ class softlocker():
 	#def unlockApt
 
 	def setLock(self):
-		mproc=multiprocessing.Process(target=self._watchdog)
-		mproc.start()
-		return
+		subprocess.Popen(['/usr/share/software-unlocker/watchlock.py',"{}".format(self.watchdogLaunchDelay)],close_fds=True,start_new_session=True)
 	#def setLock
-
-	def _watchdog(self):
-		return()
-		print("Waiting for apt...")
-		found=False
-		name=""
-		time.sleep(self.watchdogLaunchDelay)
-		while found==False:
-			found=True
-			for proc in psutil.process_iter(["pid","name"]):
-				for app in self.enforced:
-					name=os.path.basename(app)
-					if os.path.basename(proc.info.get("name","")) in name:
-						found=False
-						break
-			if found==False:
-				time.sleep(10)
-		self.setStatus(enforce=True,apps=self.enforced)
-		self.enforced=[]
