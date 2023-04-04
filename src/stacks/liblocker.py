@@ -83,7 +83,8 @@ class softlocker():
 
 	def setPolkitStatus(self,status=True):
 		configDir="/usr/share/software-unlocker/polkit/"
-		polkitDir="/etc/polkit/localauthority"
+		polkitDir="/etc/polkit-1/localauthority"
+		actionsDir="/usr/share/polkit-1"
 		for d in os.listdir(configDir):
 			if os.path.isdir(os.path.join(polkitDir,d))==False:
 				os.makedirs(os.path.join(polkitDir,d))
@@ -92,11 +93,17 @@ class softlocker():
 					wrkf=os.path.join(configDir,d,fconf)
 					with open(wrkf,'r') as f:
 						fcontent=f.read()
-					dstf=os.path.join(polkitDir,d,fconf)
+					if d=="actions":
+						dstf=os.path.join(actionsDir,d,fconf)
+					else:
+						dstf=os.path.join(polkitDir,d,fconf)
 					with open(dstf,'w') as f:
 						f.write(fcontent)
 				else:
-					dstf=os.path.join(polkitDir,d,fconf)
+					if d=="actions":
+						dstf=os.path.join(actionsDir,d,fconf)
+					else:
+						dstf=os.path.join(polkitDir,d,fconf)
 					if os.path.isfile(dstf):
 						os.unlink(dstf)
 	#def setPolkitStatus
