@@ -36,6 +36,6 @@ while found==True:
 			break
 cmd=["/usr/share/software-unlocker/software-unlocker.py","default"]
 try:
-	subprocess.run(cmd)
+	subprocess.run(cmd,stderr=subprocess.DEVNULL,stdout=subprocess.DEVNULL)
 except Exception as e:
 	print(e)

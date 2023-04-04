@@ -21,7 +21,8 @@ i18n={"USAGE":_("Usage"),
 	"FILTERED":_("Only load apps from catalogue"),
 	"DEFAULT":_("Load values from configuration file"),
 	"LAUNCHGUI":_("Without arguments launches the gui"),
-	"MSG_LOCK":_("Software management will be locked in"),
+	"MSG_UNLOCK":_("Software management will be locked in"),
+	"MSG_LOCK":_("Software management locked."),
 	"MINUTES":_("minutes")
 }
 
@@ -46,7 +47,7 @@ def processParms(args):
 			enforce=False
 		elif i=="full":
 			showH=False
-			catalogue=True
+			fullcatalogue=True
 		elif i=="default":
 			showH=False
 			fconf="/usr/share/software-unlocker/lock.json"
@@ -89,14 +90,18 @@ else:
 	locker.setTimeout(timeout)
 	locker.setStatus(enforce=enforce)
 	rebost=store.client()
-	filterState=False
-	if rebost.getFiltersEnabled()==1:
-		filterState=True
-	if filterState==catalogue:
-		cmd=["service","rebost","restart"]
-		subprocess.run(cmd)
-		lastUpdate="/usr/share/rebost/tmp/sq.lu"
-		if os.path.isfile(lastUpdate)==True:
-			os.unlink(lastUpdate)
-		rebost.disableFilters()
-	print("{} {} {}".format(i18n["MSG_LOCK"],i18n["MINUTES"],int(timeout/60)))
+	currentState=rebost.getFiltersEnabled()
+	if isinstance(currentState,int):
+		if currentState==1:
+			currentState=True
+		else:
+			currentState==False
+		if currentState==catalogue:
+			lastUpdate="/usr/share/rebost/tmp/sq.lu"
+			if os.path.isfile(lastUpdate)==True:
+				os.unlink(lastUpdate)
+			rebost.disableFilters()
+	if enforce==True:
+		print("{0}".format(i18n["MSG_LOCK"]))
+	else:
+		print("{0} {1} {2}".format(i18n["MSG_UNLOCK"],int(timeout/60),i18n["MINUTES"]))
