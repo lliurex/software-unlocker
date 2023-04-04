@@ -1,4 +1,5 @@
 {
     "lock":"false",
-	"catalogue":"true"
+	"catalogue":"true",
+	"timeout":"600"
 }
