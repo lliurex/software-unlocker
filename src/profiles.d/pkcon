@@ -1,0 +1,5 @@
+/usr/bin/pkcon {
+  include <abstractions/base>
+  /usr/bin/pkcon rm,
+}
+

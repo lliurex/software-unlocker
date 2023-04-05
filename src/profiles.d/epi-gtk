@@ -63,7 +63,7 @@
   /usr/bin/groups mixr,
   /usr/bin/grep mixr,
   /usr/bin/lsof mixr,
-  /usr/bin/pkcon px -> unsecuredpkcon,
+  /usr/bin/pkcon Ux,
   /usr/bin/pkttyagent mixr,
   /usr/bin/ps mixr,
   /usr/bin/python3* cixrmw,
