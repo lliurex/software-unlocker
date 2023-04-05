@@ -39,7 +39,7 @@
   /tmp/{,**/}* wr,
   /{,usr/}bin/{,**/}* cixmrr,
   /usr/bin/dpkg px -> unsecuredpkg,
-  /usr/bin/pkcon cix -> unsecuredpkg,
+  /usr/bin/pkcon px -> unsecuredpkcon,
   /usr/bin/python3* cixrmw,
   /usr/{,local/}lib/python3*/dist-packages/{,**/}* mr,
   /usr/lib/x86_64-linux-gnu/libselinux.so.1 mr,
