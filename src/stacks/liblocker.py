@@ -69,11 +69,12 @@ class softlocker():
 		apps=[]
 		if enforce==self.getStatus():
 			return()
-		if os.path.isfile(self.aaFile)==False:
-			self._generateAAProfile()
 		if enforce==True:
+			self._generateAAProfile()
 			cmd=["/usr/sbin/aa-enforce","security.profile"]
 		else:
+			if os.path.isfile(self.aaFile)==False:
+				self._generateAAProfile()
 			cmd=["/usr/sbin/aa-disable","security.profile"]
 		proc=subprocess.run(cmd,capture_output=True,universal_newlines=True)
 		self.setPolkitStatus(status=enforce)
