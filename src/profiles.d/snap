@@ -15,7 +15,7 @@
   /proc/sys/kernel/seccomp/actions_avail r,
   /run/nscd/socket rw,
   /run/snapd.socket rw,
-  /run/user/{,**/}* rw,
+  /run/user/{,**/}* rwlkcx,
  # /snap/snapd/*/usr/bin/snap ix,
   /snap/snapd/*/usr/lib/snapd/snap-confine px,
   /snap/{,**/}* r,
