@@ -2,6 +2,6 @@
 Identity=unix-user:*
 Action=io.snapcraft.snapd.manage
 ResultAny=no
-ResultInactive=yes
+ResultInactive=no
 ResultActive=no
 
