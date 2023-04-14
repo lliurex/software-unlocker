@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import sys
-import os
+import os,subprocess
 from PySide2.QtWidgets import QApplication, QLabel, QPushButton,QGridLayout,QHeaderView,QHBoxLayout,QComboBox,QLineEdit,QWidget,QMenu,QCheckBox,QDialog,QDialogButtonBox,QApplication
 from PySide2 import QtGui
 from PySide2.QtCore import Qt,QSize,Signal,QThread
@@ -112,7 +112,13 @@ class portrait(confStack):
 	#def _load_screen
 
 	def updateScreen(self):
-		self.chkEnableStore.setChecked(not(self.rebost.getFiltersEnabled()))
+		try:
+			self.chkEnableStore.setChecked(not(self.rebost.getFiltersEnabled()))
+		except:
+			cmd=["service","rebost","restart"]
+			subprocess.run(cmd)
+			self.chkEnableStore.setChecked(not(self.rebost.getFiltersEnabled()))
+
 		self.chkEnableLock.setChecked(self.locker.getStatus())
 	#def _update_screen
 
